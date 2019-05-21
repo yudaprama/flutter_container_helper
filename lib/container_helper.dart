@@ -4,6 +4,64 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_insets/flutter_insets.dart';
 
+class CardPaddingTitle extends StatelessWidget {
+	final Widget child;
+	final double padding;
+	final String title;
+
+  const CardPaddingTitle({
+	  Key key,
+	  this.padding=20.0,
+	  this.title,
+	  this.child
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CardPadding(
+	    padding: padding,
+	    children: <Widget>[
+		    Text(
+			    title,
+			    style: Theme.of(context).textTheme.headline,
+		    ),
+		    Divider(),
+		    child
+	    ],
+    );
+  }
+}
+
+class CardPadding extends StatelessWidget {
+	final List<Widget> children;
+	final double padding;
+	final CrossAxisAlignment crossAxisAlignment;
+  final Color color;
+
+	const CardPadding({
+		Key key,
+		this.padding=20.0,
+		@required this.children,
+		this.crossAxisAlignment = CrossAxisAlignment.start,
+		this.color = Colors.white,
+	}) : super(key: key);
+
+	@override
+	Widget build(BuildContext context) {
+		return Card(
+			color: color,
+			child: Padding(
+				padding: EdgeInsets.all(padding),
+				child: Column(
+					mainAxisSize: MainAxisSize.min,
+					crossAxisAlignment: crossAxisAlignment,
+					children: children,
+				),
+			),
+		);
+	}
+}
+
 class ContainerBox extends StatelessWidget {
   final List<Widget> children;
 
